@@ -39,11 +39,16 @@ class ViewController: UIViewController {
     var makeExpandedCellsVisible: Bool = true
 
     func randomString() -> String {
-        let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-        let len = UInt32(letters.length)
+        let letters : NSString = "abcdefghijklmnopqrstuvwxyz        "
+        let mayus: NSString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+         let len = UInt32(letters.length)
+         let len2 = UInt32(mayus.length)
 
         var randomString = ""
-
+        let rand = arc4random_uniform(len2)
+        var nextChar = mayus.character(at: Int(rand))
+        randomString += NSString(characters: &nextChar, length: 1) as String
+        
         for _ in 0 ..<  Int(arc4random_uniform(200)) {
             let rand = arc4random_uniform(len)
             var nextChar = letters.character(at: Int(rand))
@@ -55,10 +60,15 @@ class ViewController: UIViewController {
     
     var comments: [Comment] = {
         func randomString() -> String {
-           let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-           let len = UInt32(letters.length)
+           let letters : NSString = "abcdefghijklmnopqrstuvwxyz        "
+           let mayus: NSString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            let len = UInt32(letters.length)
+            let len2 = UInt32(mayus.length)
 
            var randomString = ""
+           let rand = arc4random_uniform(len2)
+           var nextChar = mayus.character(at: Int(rand))
+           randomString += NSString(characters: &nextChar, length: 1) as String
 
            for _ in 0 ..<  Int(arc4random_uniform(200)) {
                let rand = arc4random_uniform(len)
@@ -74,7 +84,7 @@ class ViewController: UIViewController {
         var comments: [Comment] = []
         
         for n in 0...long{
-            comments.append(Comment("0\(n)" + randomString(), 0, nil))
+            comments.append(Comment("0\(n) " + randomString(), 0, nil))
         }
         var d = 1
         var cc = comments
@@ -82,7 +92,7 @@ class ViewController: UIViewController {
             var new_comments: [Comment] = []
             for comment in cc {
                 for n in 0...long{
-                    let c = Comment("\(d)\(n)" + randomString(), d, comment)
+                    let c = Comment("\(d)\(n) " + randomString(), d, comment)
                     comment.comments.append(c)
                     new_comments.append(c)
                 }
