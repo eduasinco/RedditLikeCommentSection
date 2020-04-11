@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nph-T2-ucb">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Write Comment View Controller-->
+        <scene sceneID="Tjh-Y6-dM4">
+            <objects>
+                <viewController storyboardIdentifier="WriteComment" id="nph-T2-ucb" customClass="WriteCommentViewController" customModule="try6" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="p5I-as-upm">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tsp-Sb-wBE" userLabel="holder">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <subviews>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" translatesAutoresizingMaskIntoConstraints="NO" id="Kfd-Zc-DBa">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BTG-um-kc7">
+                                                <rect key="frame" x="0.0" y="8" width="414" height="802"/>
+                                                <subviews>
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="rpG-ST-w9W">
+                                                        <rect key="frame" x="8" y="37" width="398" height="757"/>
+                                                        <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="dqb-UA-faP"/>
+                                                        </constraints>
+                                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                        <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    </textView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dcd-sw-wGG">
+                                                        <rect key="frame" x="8" y="8" width="398" height="21"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <constraints>
+                                                    <constraint firstItem="dcd-sw-wGG" firstAttribute="top" secondItem="BTG-um-kc7" secondAttribute="top" constant="8" id="QVe-8z-Bzi"/>
+                                                    <constraint firstAttribute="trailing" secondItem="dcd-sw-wGG" secondAttribute="trailing" constant="8" id="R2I-wa-YgF"/>
+                                                    <constraint firstAttribute="trailing" secondItem="rpG-ST-w9W" secondAttribute="trailing" constant="8" id="WyJ-oU-k36"/>
+                                                    <constraint firstItem="rpG-ST-w9W" firstAttribute="leading" secondItem="BTG-um-kc7" secondAttribute="leading" constant="8" id="Xfa-xZ-0du"/>
+                                                    <constraint firstItem="rpG-ST-w9W" firstAttribute="top" secondItem="dcd-sw-wGG" secondAttribute="bottom" constant="8" id="lb1-Y3-WZ9"/>
+                                                    <constraint firstItem="dcd-sw-wGG" firstAttribute="leading" secondItem="BTG-um-kc7" secondAttribute="leading" constant="8" id="pJ4-gY-sbb"/>
+                                                    <constraint firstAttribute="bottom" secondItem="rpG-ST-w9W" secondAttribute="bottom" priority="999" constant="8" id="ub2-kC-NxZ"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="BTG-um-kc7" firstAttribute="leading" secondItem="Kfd-Zc-DBa" secondAttribute="leading" id="E69-qf-UXr"/>
+                                            <constraint firstAttribute="trailing" secondItem="BTG-um-kc7" secondAttribute="trailing" id="JRB-8w-v97"/>
+                                            <constraint firstItem="BTG-um-kc7" firstAttribute="width" secondItem="Kfd-Zc-DBa" secondAttribute="width" id="OvV-12-vBQ"/>
+                                            <constraint firstAttribute="bottom" secondItem="BTG-um-kc7" secondAttribute="bottom" constant="8" id="WZt-TJ-sZf"/>
+                                            <constraint firstItem="BTG-um-kc7" firstAttribute="height" secondItem="Kfd-Zc-DBa" secondAttribute="height" multiplier="0.98044" priority="250" id="s0F-bo-GPN"/>
+                                            <constraint firstItem="BTG-um-kc7" firstAttribute="top" secondItem="Kfd-Zc-DBa" secondAttribute="top" constant="8" id="xtY-Nc-1h8"/>
+                                        </constraints>
+                                    </scrollView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="Kfd-Zc-DBa" firstAttribute="leading" secondItem="Tsp-Sb-wBE" secondAttribute="leading" id="af7-mg-zaN"/>
+                                    <constraint firstAttribute="trailing" secondItem="Kfd-Zc-DBa" secondAttribute="trailing" id="fCb-Sx-WXX"/>
+                                    <constraint firstItem="Kfd-Zc-DBa" firstAttribute="top" secondItem="Tsp-Sb-wBE" secondAttribute="top" id="roa-bk-BLG"/>
+                                    <constraint firstAttribute="bottom" secondItem="Kfd-Zc-DBa" secondAttribute="bottom" id="tHb-1B-lna"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="hp5-lg-BVW" firstAttribute="bottom" secondItem="Tsp-Sb-wBE" secondAttribute="bottom" id="13A-uW-LbE"/>
+                            <constraint firstItem="hp5-lg-BVW" firstAttribute="trailing" secondItem="Tsp-Sb-wBE" secondAttribute="trailing" id="ZAQ-Hj-FGE"/>
+                            <constraint firstItem="Tsp-Sb-wBE" firstAttribute="top" secondItem="hp5-lg-BVW" secondAttribute="top" id="jCP-vY-1cj"/>
+                            <constraint firstItem="Tsp-Sb-wBE" firstAttribute="leading" secondItem="hp5-lg-BVW" secondAttribute="leading" id="uTW-g2-5jT"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="hp5-lg-BVW"/>
+                    </view>
+                    <connections>
+                        <outlet property="bcfkb" destination="13A-uW-LbE" id="404-3G-Dn2"/>
+                        <outlet property="commentLabel" destination="dcd-sw-wGG" id="Srj-Mb-GIo"/>
+                        <outlet property="textView" destination="rpG-ST-w9W" id="wcl-1i-ySA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ExE-xy-Xyn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-39.130434782608695" y="-54.241071428571423"/>
+        </scene>
+    </scenes>
+</document>
