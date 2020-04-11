@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol AddCommentDelegate {
+    func commentAdded(newComment: Comment)
+}
+
 class WriteCommentViewController: KUIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var commentLabel: UILabel!
@@ -17,28 +21,22 @@ class WriteCommentViewController: KUIViewController, UITextFieldDelegate {
     var comment: Comment!
     var originalHeight: CGFloat!
     
+    var delegate: AddCommentDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         textView.delegate = self
         textView.isScrollEnabled = false
         originalHeight = self.view.frame.height
         self.bottomConstraintForKeyboard = bcfkb
-        // commentLabel.text = self.comment.comment
-//        NotificationCenter.default.addObserver(self, selector: #selector(WriteCommentViewController.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(WriteCommentViewController.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
-//
-//    @objc func keyboardWillShow(notification: NSNotification) {
-//        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-//            print("showwwwwww")
-//            self.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: originalHeight - keyboardSize.height)
-//        }
-//    }
-//
-//    @objc func keyboardWillHide(notification: NSNotification) {
-//        print("hideeeeee")
-//        self.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: originalHeight)
-//    }
+    
+    @IBAction func submitPress(_ sender: Any) {
+        let newComment = Comment(textView.text!, comment.depth + 1, comment)
+        comment.comments.insert(newComment, at: 0)
+        delegate?.commentAdded(newComment: newComment)
+        self.dismiss(animated: true)
+    }
 }
 extension WriteCommentViewController: UITextViewDelegate {
     

@@ -37,6 +37,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var tableHeightConstraint: NSLayoutConstraint!
     var _currentlyDisplayed: [Comment] = []
     var makeExpandedCellsVisible: Bool = true
+    var currentCell: UITableViewCell?
+
 
     func randomString() -> String {
         let letters : NSString = "abcdefghijklmnopqrstuvwxyz        "
@@ -142,11 +144,18 @@ class ViewController: UIViewController {
         tableView.estimatedRowHeight = 60
         linearizeComments(comments)
     }
-}
-extension ViewController: AddOrDeleteDelegate{
     
-    func add(comment: Comment, cell: UITableViewCell) {
-        let ip = self.tableView.indexPath(for: cell)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToWriteComment"{
+            let destVC = segue.destination as! WriteCommentViewController
+            destVC.comment = sender as? Comment
+            destVC.delegate = self
+        }
+    }
+}
+extension ViewController: AddCommentDelegate{
+    func commentAdded(newComment: Comment) {
+        let ip = self.tableView.indexPath(for: currentCell!)
         guard let indexPath = ip else { return }
         let selectedCom: Comment = _currentlyDisplayed[indexPath.row]
         let selectedIndex = indexPath.row
@@ -163,15 +172,43 @@ extension ViewController: AddOrDeleteDelegate{
             }
             tableView.insertRows(at: indexPaths, with: .bottom)
         }
-        let newComment = Comment(randomString(), comment.depth + 1, comment)
-        comment.comments.insert(newComment, at: 0)
         self._currentlyDisplayed.insert(newComment, at: selectedIndex + 1)
-        
         let addedIndexPath = IndexPath(row: selectedIndex+1, section: indexPath.section)
         tableView.beginUpdates()
         tableView.insertRows(at: [addedIndexPath], with: .bottom)
         tableView.endUpdates()
-        
+    }
+}
+
+extension ViewController: AddOrDeleteDelegate{
+    func add(comment: Comment, cell: UITableViewCell) {
+        self.currentCell = cell
+//        let ip = self.tableView.indexPath(for: cell)
+//        guard let indexPath = ip else { return }
+//        let selectedCom: Comment = _currentlyDisplayed[indexPath.row]
+//        let selectedIndex = indexPath.row
+//
+//        // Do whatever you want from your button here.
+//        if !(self.isCellExpanded(indexPath: indexPath)){
+//            // expand
+//            var toShow: [Comment] = []
+//            toShow = selectedCom.comments
+//            self._currentlyDisplayed.insert(contentsOf: toShow, at: selectedIndex+1)
+//            var indexPaths: [IndexPath] = []
+//            for i in 0..<toShow.count {
+//                indexPaths.append(IndexPath(row: selectedIndex+i+1, section: indexPath.section))
+//            }
+//            tableView.insertRows(at: indexPaths, with: .bottom)
+//        }
+//        let newComment = Comment(randomString(), comment.depth + 1, comment)
+//        comment.comments.insert(newComment, at: 0)
+//        self._currentlyDisplayed.insert(newComment, at: selectedIndex + 1)
+//
+//        let addedIndexPath = IndexPath(row: selectedIndex+1, section: indexPath.section)
+//        tableView.beginUpdates()
+//        tableView.insertRows(at: [addedIndexPath], with: .bottom)
+//        tableView.endUpdates()
+        performSegue(withIdentifier: "goToWriteComment", sender: comment)
     }
     
     func expand(comment: Comment, cell: UITableViewCell) {

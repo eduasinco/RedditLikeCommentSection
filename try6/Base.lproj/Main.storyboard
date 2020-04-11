@@ -65,11 +65,22 @@
                     <connections>
                         <outlet property="tableHeightConstraint" destination="kby-n7-clR" id="aSe-7a-d7G"/>
                         <outlet property="tableView" destination="xMr-FM-1lj" id="4LB-IJ-k3Z"/>
+                        <segue destination="AwB-Kk-yQ9" kind="show" identifier="goToWriteComment" id="mVB-im-bEv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mu3-Kl-5dK" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="211.59420289855075" y="129.91071428571428"/>
+        </scene>
+        <!--WriteCommentStoryboard-->
+        <scene sceneID="hY5-mP-brB">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="WriteComment" storyboardName="WriteCommentStoryboard" id="AwB-Kk-yQ9" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="h4Y-dB-ItZ"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EPl-w3-53U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1049" y="130"/>
         </scene>
     </scenes>
 </document>

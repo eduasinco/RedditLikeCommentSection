@@ -25,7 +25,7 @@
                                                 <rect key="frame" x="0.0" y="8" width="414" height="802"/>
                                                 <subviews>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="rpG-ST-w9W">
-                                                        <rect key="frame" x="8" y="37" width="398" height="757"/>
+                                                        <rect key="frame" x="8" y="37" width="398" height="699"/>
                                                         <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="dqb-UA-faP"/>
@@ -41,16 +41,32 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EoB-JG-UCW">
+                                                        <rect key="frame" x="8" y="744" width="398" height="50"/>
+                                                        <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="5As-2y-MyC"/>
+                                                        </constraints>
+                                                        <state key="normal" title="Submit">
+                                                            <color key="titleColor" red="0.93577490480000003" green="0.93577490480000003" blue="0.93577490480000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="submitPress:" destination="nph-T2-ucb" eventType="touchUpInside" id="zww-fv-WzY"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="EoB-JG-UCW" secondAttribute="bottom" constant="8" id="0Sl-I4-OMg"/>
                                                     <constraint firstItem="dcd-sw-wGG" firstAttribute="top" secondItem="BTG-um-kc7" secondAttribute="top" constant="8" id="QVe-8z-Bzi"/>
                                                     <constraint firstAttribute="trailing" secondItem="dcd-sw-wGG" secondAttribute="trailing" constant="8" id="R2I-wa-YgF"/>
+                                                    <constraint firstAttribute="trailing" secondItem="EoB-JG-UCW" secondAttribute="trailing" constant="8" id="WCt-dI-yzV"/>
                                                     <constraint firstAttribute="trailing" secondItem="rpG-ST-w9W" secondAttribute="trailing" constant="8" id="WyJ-oU-k36"/>
                                                     <constraint firstItem="rpG-ST-w9W" firstAttribute="leading" secondItem="BTG-um-kc7" secondAttribute="leading" constant="8" id="Xfa-xZ-0du"/>
+                                                    <constraint firstItem="EoB-JG-UCW" firstAttribute="leading" secondItem="BTG-um-kc7" secondAttribute="leading" constant="8" id="Z2E-L8-bkl"/>
+                                                    <constraint firstItem="EoB-JG-UCW" firstAttribute="top" secondItem="rpG-ST-w9W" secondAttribute="bottom" constant="8" id="evf-gs-zyy"/>
                                                     <constraint firstItem="rpG-ST-w9W" firstAttribute="top" secondItem="dcd-sw-wGG" secondAttribute="bottom" constant="8" id="lb1-Y3-WZ9"/>
                                                     <constraint firstItem="dcd-sw-wGG" firstAttribute="leading" secondItem="BTG-um-kc7" secondAttribute="leading" constant="8" id="pJ4-gY-sbb"/>
-                                                    <constraint firstAttribute="bottom" secondItem="rpG-ST-w9W" secondAttribute="bottom" priority="999" constant="8" id="ub2-kC-NxZ"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
