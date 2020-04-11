@@ -162,10 +162,6 @@ extension ViewController: AddOrDeleteDelegate{
                 indexPaths.append(IndexPath(row: selectedIndex+i+1, section: indexPath.section))
             }
             tableView.insertRows(at: indexPaths, with: .bottom)
-
-            if self.makeExpandedCellsVisible {
-                tableView.scrollToRow(at: IndexPath(row: selectedIndex+1, section: indexPath.section), at: UITableView.ScrollPosition.middle, animated: false)
-            }
         }
         let newComment = Comment(randomString(), comment.depth + 1, comment)
         comment.comments.insert(newComment, at: 0)
