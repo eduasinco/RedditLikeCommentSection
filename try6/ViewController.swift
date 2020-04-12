@@ -172,42 +172,12 @@ extension ViewController: AddCommentDelegate{
             }
             tableView.insertRows(at: indexPaths, with: .bottom)
         }
-        self._currentlyDisplayed.insert(newComment, at: selectedIndex + 1)
-        let addedIndexPath = IndexPath(row: selectedIndex+1, section: indexPath.section)
-        tableView.beginUpdates()
-        tableView.insertRows(at: [addedIndexPath], with: .bottom)
-        tableView.endUpdates()
     }
 }
 
 extension ViewController: AddOrDeleteDelegate{
     func add(comment: Comment, cell: UITableViewCell) {
         self.currentCell = cell
-//        let ip = self.tableView.indexPath(for: cell)
-//        guard let indexPath = ip else { return }
-//        let selectedCom: Comment = _currentlyDisplayed[indexPath.row]
-//        let selectedIndex = indexPath.row
-//
-//        // Do whatever you want from your button here.
-//        if !(self.isCellExpanded(indexPath: indexPath)){
-//            // expand
-//            var toShow: [Comment] = []
-//            toShow = selectedCom.comments
-//            self._currentlyDisplayed.insert(contentsOf: toShow, at: selectedIndex+1)
-//            var indexPaths: [IndexPath] = []
-//            for i in 0..<toShow.count {
-//                indexPaths.append(IndexPath(row: selectedIndex+i+1, section: indexPath.section))
-//            }
-//            tableView.insertRows(at: indexPaths, with: .bottom)
-//        }
-//        let newComment = Comment(randomString(), comment.depth + 1, comment)
-//        comment.comments.insert(newComment, at: 0)
-//        self._currentlyDisplayed.insert(newComment, at: selectedIndex + 1)
-//
-//        let addedIndexPath = IndexPath(row: selectedIndex+1, section: indexPath.section)
-//        tableView.beginUpdates()
-//        tableView.insertRows(at: [addedIndexPath], with: .bottom)
-//        tableView.endUpdates()
         performSegue(withIdentifier: "goToWriteComment", sender: comment)
     }
     
