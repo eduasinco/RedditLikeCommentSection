@@ -8,7 +8,7 @@
 
 import UIKit
 
-let MAX_DEPTH = 3
+let MAX_DEPTH = 8
 let MAX_LENGTH = 3
 let ACTUAL_DEPTH = 3
 let ACTUAL_LENGTH = 3
@@ -178,10 +178,12 @@ extension ViewController: AddOrDeleteDelegate {
     func moreComments(comment: Comment, cell: UITableViewCell) {
         let ip = self.tableView.indexPath(for: cell)
         guard let indexPath = ip else { return }
+        let selectedCom: Comment = _currentlyDisplayed[indexPath.row]
         let selectedIndex = indexPath.row
         
         self._currentlyDisplayed.remove(at: selectedIndex)
         tableView.deleteRows(at: [IndexPath(row: selectedIndex, section: indexPath.section)], with: .bottom)
+        delteComemnt(comment: selectedCom)
 
         var commentsToAdd: [Comment] = []
         commentsToAdd = self.createRandomComments(deep: 3, long: comment.isMaxLength, parent: comment.parent)
@@ -286,6 +288,10 @@ extension ViewController: AddOrDeleteDelegate {
         }
         tableView.deleteRows(at: indexPaths, with: .bottom)
         
+        delteComemnt(comment: comment)
+    }
+    
+    func delteComemnt(comment: Comment){
         if let parent = comment.parent {
             for (i, child) in parent.comments.enumerated(){
                 if child.id == comment.id {
@@ -301,7 +307,6 @@ extension ViewController: AddOrDeleteDelegate {
                 }
             }
         }
-        
     }
 }
 
