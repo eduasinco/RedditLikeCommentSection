@@ -251,19 +251,22 @@ extension ViewController: AddOrDeleteDelegate {
         }
         tableView.deleteRows(at: indexPaths, with: .bottom)
         
-        guard let parent = comment.parent else {
+        if let parent = comment.parent {
+            for (i, child) in parent.comments.enumerated(){
+                if child.id == comment.id {
+                    parent.comments.remove(at: i)
+                    break
+                }
+            }
+        } else {
             for (i, child) in self.comments.enumerated(){
                 if child.id == comment.id {
                     self.comments.remove(at: i)
+                    break
                 }
             }
-            return
         }
-        for (i, child) in parent.comments.enumerated(){
-            if child.id == comment.id {
-                parent.comments.remove(at: i)
-            }
-        }
+        
     }
 }
 

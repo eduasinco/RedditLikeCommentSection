@@ -71,12 +71,10 @@ class TableViewCell: UITableViewCell {
             }
             stackView.visibility = .visible
             self.label.text = comment.comment
-            self.stackView.layoutIfNeeded()
         } else {
             moreCommentsButton.visibility = .visible
             moreCommentsButton.setTitle("\(comment.isMaxLength) more comments...", for: .normal)
             stackView.visibility = .gone
-            self.stackView.layoutIfNeeded()
         }
     }
     
