@@ -41,7 +41,7 @@ class Comment {
         parent.comments.append(self)
         if parent.comments.count == MAX_LENGTH {
             let maxLengthComment = Comment("", self.depth, parent)
-            maxLengthComment.isMaxLength = Int(arc4random_uniform(3))
+            maxLengthComment.isMaxLength = 1 + Int(arc4random_uniform(2))
         }
     }
 }

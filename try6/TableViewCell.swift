@@ -70,9 +70,8 @@ class TableViewCell: UITableViewCell {
                 continueConversationButton.visibility = .gone
             }
             stackView.visibility = .visible
-    
-            self.stackView.layoutIfNeeded()
             self.label.text = comment.comment
+            self.stackView.layoutIfNeeded()
         } else {
             moreCommentsButton.visibility = .visible
             moreCommentsButton.setTitle("\(comment.isMaxLength) more comments...", for: .normal)
