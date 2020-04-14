@@ -36,7 +36,7 @@
                                 <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Continue conversation"/>
                                 <connections>
-                                    <action selector="moreCommentsPress:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="vcd-k4-RjM"/>
+                                    <action selector="continueConversation:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="vcd-k4-RjM"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="I67-yy-PFo">
@@ -117,7 +117,7 @@
                         <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <state key="normal" title="X more comments"/>
                         <connections>
-                            <action selector="continueConversationPress:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="8ug-ii-g2v"/>
+                            <action selector="loadMoreComments:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="8ug-ii-g2v"/>
                         </connections>
                     </button>
                 </subviews>

@@ -49,12 +49,12 @@ class TableViewCell: UITableViewCell {
     @IBAction func collapsePress(_ sender: Any) {
                 self.delegate?.collapse(comment: self.comment!, cell: self)
     }
-    @IBAction func moreCommentsPress(_ sender: Any) {
-        self.delegate?.moreComments(comment: self.comment!, cell: self)
+    @IBAction func continueConversation(_ sender: Any) {
+        self.delegate?.continueConversation(comment: self.comment!, cell: self)
 
     }
-    @IBAction func continueConversationPress(_ sender: Any) {
-        self.delegate?.continueConversation(comment: self.comment!, cell: self)
+    @IBAction func loadMoreComments(_ sender: Any) {
+        self.delegate?.moreComments(comment: self.comment!, cell: self)
     }
     
     func setCell(comment: Comment){

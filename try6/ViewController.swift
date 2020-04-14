@@ -30,17 +30,19 @@ class Comment {
         return self.count
     }
     
-    init(_ comment: String, _ depth: Int, _ parent: Comment?) {
+    init(_ comment: String, _ parent: Comment?) {
         self.id = Comment.incrId()
         self.comment = comment
-        self.depth = depth
         self.parent = parent
-        // self.isMaxDepth = self.depth == MAX_DEPTH - 1
-
-        guard let parent = self.parent else { return }
+        
+        guard let parent = self.parent else {
+            self.depth = 0
+            return
+        }
+        self.depth = parent.depth + 1
         parent.comments.append(self)
         if parent.comments.count == MAX_LENGTH {
-            let maxLengthComment = Comment("", self.depth, parent)
+            let maxLengthComment = Comment("", parent)
             maxLengthComment.isMaxLength = 1 + Int(arc4random_uniform(2))
         }
     }
@@ -62,7 +64,7 @@ class ViewController: UIViewController {
         tableView.isScrollEnabled = false
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 60
-        createRandomComments()
+        self.comments = createRandomComments()
         linearizeComments(comments)
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -92,13 +94,10 @@ class ViewController: UIViewController {
         return randomString
     }
     
-    func createRandomComments(){
-        let deep = ACTUAL_DEPTH
-        let long = ACTUAL_LENGTH
+    func createRandomComments(deep: Int = ACTUAL_DEPTH, long: Int = ACTUAL_LENGTH, parent: Comment? = nil) -> [Comment]{
         var comments: [Comment] = []
-        
         for n in 0..<long{
-            comments.append(Comment("0\(n) " + randomString(), 0, nil))
+            comments.append(Comment("0\(n) " + randomString(), parent))
         }
         
         var d = 1
@@ -107,14 +106,14 @@ class ViewController: UIViewController {
             var new_comments: [Comment] = []
             for comment in cc {
                 for n in 0..<long{
-                    let c = Comment("\(d)\(n) " + randomString(), d, comment)
+                    let c = Comment("\(d)\(n) " + randomString(), comment)
                     new_comments.append(c)
                 }
             }
             cc = new_comments
             d += 1
         }
-        self.comments = comments
+        return comments
     }
     func linearizeComments(_ comments: [Comment]){
         var q: [Comment] = []
@@ -173,7 +172,22 @@ extension ViewController: AddCommentDelegate{
 
 extension ViewController: AddOrDeleteDelegate {
     func moreComments(comment: Comment, cell: UITableViewCell) {
+        let ip = self.tableView.indexPath(for: cell)
+        guard let indexPath = ip else { return }
+        let selectedIndex = indexPath.row
         
+        self._currentlyDisplayed.remove(at: selectedIndex)
+        tableView.deleteRows(at: [IndexPath(row: selectedIndex, section: indexPath.section)], with: .bottom)
+
+        var commentsToAdd: [Comment] = []
+        commentsToAdd = self.createRandomComments(deep: 3, long: comment.isMaxLength, parent: comment.parent)
+        self._currentlyDisplayed.insert(contentsOf: commentsToAdd, at: selectedIndex)
+        
+        var indexPaths: [IndexPath] = []
+        for i in 0..<commentsToAdd.count {
+            indexPaths.append(IndexPath(row: selectedIndex+i, section: indexPath.section))
+        }
+        tableView.insertRows(at: indexPaths, with: .bottom)
     }
     
     func continueConversation(comment: Comment, cell: UITableViewCell) {
