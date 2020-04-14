@@ -14,7 +14,7 @@ protocol AddOrDeleteDelegate {
     func add(comment: Comment, cell: UITableViewCell)
     func delete(comment: Comment, cell: UITableViewCell)
     func moreComments(comment: Comment, cell: UITableViewCell)
-    func continueConversation(comment: Comment, cell: UITableViewCell)
+    func continueConversation(comment: Comment, cell: TableViewCell)
 }
 
 class TableViewCell: UITableViewCell {

@@ -8,7 +8,7 @@
 
 import UIKit
 
-let MAX_DEPTH = 8
+let MAX_DEPTH = 3
 let MAX_LENGTH = 3
 let ACTUAL_DEPTH = 3
 let ACTUAL_LENGTH = 3
@@ -35,16 +35,18 @@ class Comment {
         self.comment = comment
         self.parent = parent
         
-        guard let parent = self.parent else {
+        if let parent = self.parent {
+            self.depth = parent.depth + 1
+            parent.comments.append(self)
+            if parent.comments.count == MAX_LENGTH {
+                let maxLengthComment = Comment("", parent)
+                maxLengthComment.isMaxLength = 1 + Int(arc4random_uniform(2))
+            }
+        } else {
             self.depth = 0
-            return
         }
-        self.depth = parent.depth + 1
-        parent.comments.append(self)
-        if parent.comments.count == MAX_LENGTH {
-            let maxLengthComment = Comment("", parent)
-            maxLengthComment.isMaxLength = 1 + Int(arc4random_uniform(2))
-        }
+        
+        self.isMaxDepth = self.depth == MAX_DEPTH - 1
     }
 }
 
@@ -102,7 +104,7 @@ class ViewController: UIViewController {
         
         var d = 1
         var cc = comments
-        while d < deep{
+        while d < deep && d % MAX_DEPTH != 0{
             var new_comments: [Comment] = []
             for comment in cc {
                 for n in 0..<long{
@@ -181,6 +183,7 @@ extension ViewController: AddOrDeleteDelegate {
 
         var commentsToAdd: [Comment] = []
         commentsToAdd = self.createRandomComments(deep: 3, long: comment.isMaxLength, parent: comment.parent)
+        commentsToAdd = self.subCommentsLinearized(commentsToAdd)
         self._currentlyDisplayed.insert(contentsOf: commentsToAdd, at: selectedIndex)
         
         var indexPaths: [IndexPath] = []
@@ -190,8 +193,24 @@ extension ViewController: AddOrDeleteDelegate {
         tableView.insertRows(at: indexPaths, with: .bottom)
     }
     
-    func continueConversation(comment: Comment, cell: UITableViewCell) {
-        
+    func continueConversation(comment: Comment, cell: TableViewCell) {
+        let ip = self.tableView.indexPath(for: cell)
+        tableView.beginUpdates()
+        cell.continueConversationButton.visibility = .gone
+        tableView.endUpdates()
+        guard let indexPath = ip else { return }
+        let selectedIndex = indexPath.row
+
+        var commentsToAdd: [Comment] = []
+        commentsToAdd = self.createRandomComments(deep: 3, long: 1, parent: comment)
+        commentsToAdd = self.subCommentsLinearized(commentsToAdd)
+        self._currentlyDisplayed.insert(contentsOf: commentsToAdd, at: selectedIndex+1)
+
+        var indexPaths: [IndexPath] = []
+        for i in 0..<commentsToAdd.count {
+            indexPaths.append(IndexPath(row: selectedIndex+i+1, section: indexPath.section))
+        }
+        tableView.insertRows(at: indexPaths, with: .bottom)
     }
     
     func add(comment: Comment, cell: UITableViewCell) {
