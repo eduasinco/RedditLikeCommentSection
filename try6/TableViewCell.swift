@@ -22,17 +22,17 @@ class TableViewCell: UITableViewCell {
     var tableHeightAnchor: NSLayoutConstraint!
     var comment: Comment?
     @IBOutlet weak var label: UILabel!
-    @IBOutlet weak var leadingAnchorLabel: NSLayoutConstraint!
     @IBOutlet weak var stackView: UIView!
-    @IBOutlet weak var heigthStackView: NSLayoutConstraint!
+    @IBOutlet weak var leadingStackView: NSLayoutConstraint!
     
     @IBOutlet weak var moreCommentsButton: UIButton!
-    @IBOutlet weak var leadingAnchorMoreComments: NSLayoutConstraint!
-    @IBOutlet weak var continueConversationButton: UIButton!
-    
     @IBOutlet weak var leadingMoreComments: NSLayoutConstraint!
-    var delegate: AddOrDeleteDelegate?
     
+    @IBOutlet weak var continueConversationButton: UIButton!
+    @IBOutlet weak var leadingContinueConversation: NSLayoutConstraint!
+    
+    var delegate: AddOrDeleteDelegate?
+
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -59,22 +59,27 @@ class TableViewCell: UITableViewCell {
     
     func setCell(comment: Comment){
         self.comment = comment
-        leadingAnchorLabel.constant = CGFloat(comment.depth * 32)
+        
+        leadingStackView.constant = CGFloat(comment.depth * 32)
         leadingMoreComments.constant = CGFloat(comment.depth * 32)
-
-        if comment.isMaxLength == 0 {
-            moreCommentsButton.visibility = .gone
-            if comment.isMaxDepth == true {
-                continueConversationButton.visibility = .visible
-            } else {
-                continueConversationButton.visibility = .gone
-            }
-            stackView.visibility = .visible
-            self.label.text = comment.comment
-        } else {
+        leadingContinueConversation.constant = CGFloat(comment.depth * 32)
+        self.label.text = comment.comment
+        
+        stackView.visibility = .visible
+        continueConversationButton.visibility = .gone
+        moreCommentsButton.visibility = .gone
+        
+        if comment.isMaxLength > 0 {
+            stackView.visibility = .gone
+            continueConversationButton.visibility = .gone
             moreCommentsButton.visibility = .visible
             moreCommentsButton.setTitle("\(comment.isMaxLength) more comments...", for: .normal)
+        }
+        
+        if comment.isMaxDepth {
             stackView.visibility = .gone
+            continueConversationButton.visibility = .visible
+            moreCommentsButton.visibility = .gone
         }
     }
     

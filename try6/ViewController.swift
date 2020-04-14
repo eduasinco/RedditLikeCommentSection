@@ -8,7 +8,7 @@
 
 import UIKit
 
-let MAX_DEPTH = 8
+let MAX_DEPTH = 3
 let MAX_LENGTH = 3
 let ACTUAL_DEPTH = 3
 let ACTUAL_LENGTH = 3
@@ -39,14 +39,33 @@ class Comment {
             self.depth = parent.depth + 1
             parent.comments.append(self)
             if parent.comments.count == MAX_LENGTH {
-                let maxLengthComment = Comment("", parent)
-                maxLengthComment.isMaxLength = 1 + Int(arc4random_uniform(2))
+                Comment(parent: parent, maxLength: 1 + Int(arc4random_uniform(2)))
             }
         } else {
             self.depth = 0
         }
         
-        self.isMaxDepth = self.depth == MAX_DEPTH
+        if self.depth % MAX_DEPTH == 0 && self.depth != 0 {
+            Comment(comment: self)
+        }
+    }
+    
+    init(parent: Comment!, maxLength: Int) {
+        self.id = Comment.incrId()
+        self.comment = ""
+        self.parent = parent
+        self.depth = parent.depth + 1
+        self.isMaxLength = maxLength
+        parent.comments.append(self)
+    }
+    
+    init(comment: Comment) {
+        self.id = Comment.incrId()
+        self.comment = ""
+        self.parent = comment
+        self.depth = comment.depth + 1
+        self.isMaxDepth = true
+        comment.comments.append(self)
     }
 }
 
@@ -105,9 +124,8 @@ class ViewController: UIViewController {
                 comments.append(Comment("0-\(n) " + randomString(), parent))
             }
         }
-        
         var cc = comments
-        while cc[0].depth < deep {
+        while cc[0].depth < deep && (cc[0].depth == 0 || cc[0].depth % MAX_DEPTH != 0) {
             var new_comments: [Comment] = []
             for comment in cc {
                 for n in 0..<long{
@@ -199,20 +217,22 @@ extension ViewController: AddOrDeleteDelegate {
     
     func continueConversation(comment: Comment, cell: TableViewCell) {
         let ip = self.tableView.indexPath(for: cell)
-        tableView.beginUpdates()
-        cell.continueConversationButton.visibility = .gone
-        tableView.endUpdates()
         guard let indexPath = ip else { return }
+        let selectedCom: Comment = _currentlyDisplayed[indexPath.row]
         let selectedIndex = indexPath.row
+        
+        self._currentlyDisplayed.remove(at: selectedIndex)
+        tableView.deleteRows(at: [IndexPath(row: selectedIndex, section: indexPath.section)], with: .bottom)
+        delteComemnt(comment: selectedCom)
 
         var commentsToAdd: [Comment] = []
-        commentsToAdd = self.createRandomComments(deep: 1, long: 1, parent: comment)
+        commentsToAdd = self.createRandomComments(deep: 1, long: 1, parent: comment.parent)
         commentsToAdd = self.subCommentsLinearized(commentsToAdd)
-        self._currentlyDisplayed.insert(contentsOf: commentsToAdd, at: selectedIndex+1)
+        self._currentlyDisplayed.insert(contentsOf: commentsToAdd, at: selectedIndex)
 
         var indexPaths: [IndexPath] = []
         for i in 0..<commentsToAdd.count {
-            indexPaths.append(IndexPath(row: selectedIndex+i+1, section: indexPath.section))
+            indexPaths.append(IndexPath(row: selectedIndex+i, section: indexPath.section))
         }
         tableView.insertRows(at: indexPaths, with: .bottom)
     }

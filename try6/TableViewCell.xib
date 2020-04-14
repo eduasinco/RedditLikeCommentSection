@@ -16,98 +16,86 @@
                 <rect key="frame" x="0.0" y="0.0" width="364" height="267"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cXj-T2-AEa">
-                        <rect key="frame" x="0.0" y="0.0" width="364" height="100.5"/>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="i1O-Vi-V2x">
+                        <rect key="frame" x="0.0" y="0.0" width="364" height="70.5"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rUq-YX-JYj">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TmS-hP-W6t">
                                 <rect key="frame" x="0.0" y="0.0" width="364" height="20.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ARc-If-1Vn">
-                                <rect key="frame" x="0.0" y="70.5" width="364" height="30"/>
-                                <color key="backgroundColor" red="0.93577490480000003" green="0.93577490480000003" blue="0.93577490480000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="1AC-aS-2Vu"/>
-                                    <constraint firstAttribute="height" constant="30" id="ejk-zS-qrI"/>
-                                </constraints>
-                                <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Continue conversation"/>
-                                <connections>
-                                    <action selector="continueConversation:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="vcd-k4-RjM"/>
-                                </connections>
-                            </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="I67-yy-PFo">
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="d1h-rx-FZO">
                                 <rect key="frame" x="0.0" y="20.5" width="364" height="50"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qME-v5-V2B">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zuR-PK-YEM">
                                         <rect key="frame" x="0.0" y="0.0" width="91" height="50"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Add"/>
                                         <connections>
-                                            <action selector="addPress:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="rG6-rc-Xa9"/>
+                                            <action selector="addPress:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="XlL-nR-c6K"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qd7-vq-gZh">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="euM-HO-dRH">
                                         <rect key="frame" x="91" y="0.0" width="91" height="50"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Collapse"/>
                                         <connections>
-                                            <action selector="collapsePress:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="8pp-9r-TO8"/>
+                                            <action selector="collapsePress:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="E1R-ip-FxT"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yiu-rL-9Uq">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t7i-8g-ji7">
                                         <rect key="frame" x="182" y="0.0" width="91" height="50"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Delete"/>
                                         <connections>
-                                            <action selector="deletePress:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="JZA-hP-YRM"/>
+                                            <action selector="deletePress:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Tps-jm-sHe"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NBs-6r-XnI">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LDu-Q2-Pt6">
                                         <rect key="frame" x="273" y="0.0" width="91" height="50"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Expand"/>
                                         <connections>
-                                            <action selector="expandPress:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="CvM-Rn-RAe"/>
+                                            <action selector="expandPress:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Vso-II-fh3"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="NBs-6r-XnI" firstAttribute="top" secondItem="I67-yy-PFo" secondAttribute="top" id="7Bs-WJ-FCr"/>
-                                    <constraint firstAttribute="bottom" secondItem="NBs-6r-XnI" secondAttribute="bottom" id="JGq-Zx-6CL"/>
-                                    <constraint firstItem="Qd7-vq-gZh" firstAttribute="leading" secondItem="qME-v5-V2B" secondAttribute="trailing" id="L4B-v0-LZI"/>
-                                    <constraint firstItem="Qd7-vq-gZh" firstAttribute="top" secondItem="I67-yy-PFo" secondAttribute="top" id="NiD-xP-Hi7"/>
-                                    <constraint firstItem="Yiu-rL-9Uq" firstAttribute="top" secondItem="I67-yy-PFo" secondAttribute="top" id="QnO-yT-rLB"/>
-                                    <constraint firstItem="qME-v5-V2B" firstAttribute="leading" secondItem="I67-yy-PFo" secondAttribute="leading" id="SHh-YX-Yzf"/>
-                                    <constraint firstItem="Yiu-rL-9Uq" firstAttribute="leading" secondItem="Qd7-vq-gZh" secondAttribute="trailing" id="SXC-ah-0vc"/>
-                                    <constraint firstAttribute="trailing" secondItem="NBs-6r-XnI" secondAttribute="trailing" id="TMA-aH-f2R"/>
-                                    <constraint firstAttribute="bottom" secondItem="qME-v5-V2B" secondAttribute="bottom" id="cDe-cs-1Yv"/>
-                                    <constraint firstAttribute="bottom" secondItem="Yiu-rL-9Uq" secondAttribute="bottom" id="cV7-NW-fn5"/>
-                                    <constraint firstItem="NBs-6r-XnI" firstAttribute="leading" secondItem="Yiu-rL-9Uq" secondAttribute="trailing" id="cZj-Hu-Ktc"/>
-                                    <constraint firstAttribute="bottom" secondItem="Qd7-vq-gZh" secondAttribute="bottom" id="g9a-NM-vAx"/>
-                                    <constraint firstAttribute="height" constant="50" id="hBV-am-1ok"/>
-                                    <constraint firstItem="qME-v5-V2B" firstAttribute="top" secondItem="I67-yy-PFo" secondAttribute="top" id="ihi-lR-8BK"/>
+                                    <constraint firstAttribute="height" constant="50" id="1eC-1o-uj3"/>
+                                    <constraint firstAttribute="trailing" secondItem="LDu-Q2-Pt6" secondAttribute="trailing" id="2cy-ti-i6H"/>
+                                    <constraint firstItem="zuR-PK-YEM" firstAttribute="leading" secondItem="d1h-rx-FZO" secondAttribute="leading" id="5Ni-Mb-itk"/>
+                                    <constraint firstItem="euM-HO-dRH" firstAttribute="top" secondItem="d1h-rx-FZO" secondAttribute="top" id="6hd-cJ-7Ga"/>
+                                    <constraint firstAttribute="bottom" secondItem="LDu-Q2-Pt6" secondAttribute="bottom" id="7A5-Of-Ynb"/>
+                                    <constraint firstAttribute="bottom" secondItem="t7i-8g-ji7" secondAttribute="bottom" id="9ZD-2Q-fB3"/>
+                                    <constraint firstItem="LDu-Q2-Pt6" firstAttribute="top" secondItem="d1h-rx-FZO" secondAttribute="top" id="KQx-io-Aqf"/>
+                                    <constraint firstAttribute="bottom" secondItem="euM-HO-dRH" secondAttribute="bottom" id="Mzm-Pe-ZQH"/>
+                                    <constraint firstItem="zuR-PK-YEM" firstAttribute="top" secondItem="d1h-rx-FZO" secondAttribute="top" id="Qzb-Ez-IvB"/>
+                                    <constraint firstAttribute="bottom" secondItem="zuR-PK-YEM" secondAttribute="bottom" id="Z42-bb-ZUq"/>
+                                    <constraint firstItem="t7i-8g-ji7" firstAttribute="top" secondItem="d1h-rx-FZO" secondAttribute="top" id="a6z-Mm-etp"/>
+                                    <constraint firstItem="t7i-8g-ji7" firstAttribute="leading" secondItem="euM-HO-dRH" secondAttribute="trailing" id="dZu-oI-MHx"/>
+                                    <constraint firstItem="euM-HO-dRH" firstAttribute="leading" secondItem="zuR-PK-YEM" secondAttribute="trailing" id="mj5-zT-WbB"/>
+                                    <constraint firstItem="LDu-Q2-Pt6" firstAttribute="leading" secondItem="t7i-8g-ji7" secondAttribute="trailing" id="shn-YM-SaR"/>
                                 </constraints>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="I67-yy-PFo" firstAttribute="top" secondItem="rUq-YX-JYj" secondAttribute="bottom" id="Dj9-Ck-tRD"/>
-                            <constraint firstItem="I67-yy-PFo" firstAttribute="leading" secondItem="cXj-T2-AEa" secondAttribute="leading" id="JdD-gk-8eZ"/>
-                            <constraint firstAttribute="trailing" secondItem="I67-yy-PFo" secondAttribute="trailing" id="Q3K-NN-Ljk"/>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" id="Yxu-pQ-z6X"/>
-                            <constraint firstItem="ARc-If-1Vn" firstAttribute="top" secondItem="I67-yy-PFo" secondAttribute="bottom" id="ZMt-LR-YTu"/>
-                            <constraint firstItem="rUq-YX-JYj" firstAttribute="top" secondItem="cXj-T2-AEa" secondAttribute="top" id="bIb-3t-Ayh"/>
-                            <constraint firstAttribute="trailing" secondItem="rUq-YX-JYj" secondAttribute="trailing" id="bZY-ya-POC"/>
-                            <constraint firstItem="ARc-If-1Vn" firstAttribute="leading" secondItem="cXj-T2-AEa" secondAttribute="leading" id="fSI-bA-d0U"/>
-                            <constraint firstItem="rUq-YX-JYj" firstAttribute="leading" secondItem="cXj-T2-AEa" secondAttribute="leading" id="iKp-PM-mki"/>
-                            <constraint firstAttribute="trailing" secondItem="ARc-If-1Vn" secondAttribute="trailing" id="x1Q-K4-7dl"/>
-                            <constraint firstAttribute="bottom" secondItem="ARc-If-1Vn" secondAttribute="bottom" id="ykf-jc-xsN"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="kU6-Fw-Zad"/>
                         </constraints>
-                    </view>
+                    </stackView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yff-7z-g5F">
+                        <rect key="frame" x="0.0" y="70.5" width="364" height="30"/>
+                        <color key="backgroundColor" red="0.93577490480000003" green="0.93577490480000003" blue="0.93577490480000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="xav-sp-oEm"/>
+                        </constraints>
+                        <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <state key="normal" title="Continue conversation"/>
+                        <connections>
+                            <action selector="continueConversation:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="1gt-3N-Fxv"/>
+                        </connections>
+                    </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xOE-Vw-Z2Z">
                         <rect key="frame" x="0.0" y="100.5" width="364" height="30"/>
                         <color key="backgroundColor" red="0.93577490480000003" green="0.93577490480000003" blue="0.93577490480000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -123,27 +111,28 @@
                 </subviews>
                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                 <constraints>
-                    <constraint firstItem="xOE-Vw-Z2Z" firstAttribute="top" secondItem="cXj-T2-AEa" secondAttribute="bottom" id="C1M-8r-N4k"/>
-                    <constraint firstAttribute="trailing" secondItem="cXj-T2-AEa" secondAttribute="trailing" id="HoR-VM-hbQ"/>
+                    <constraint firstItem="i1O-Vi-V2x" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="14z-1a-L8b"/>
+                    <constraint firstItem="xOE-Vw-Z2Z" firstAttribute="top" secondItem="Yff-7z-g5F" secondAttribute="bottom" id="4qh-QF-47I"/>
                     <constraint firstAttribute="trailing" secondItem="xOE-Vw-Z2Z" secondAttribute="trailing" id="ISD-j8-ymS"/>
-                    <constraint firstItem="cXj-T2-AEa" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="PAJ-Mp-JtS"/>
-                    <constraint firstItem="xOE-Vw-Z2Z" firstAttribute="top" secondItem="cXj-T2-AEa" secondAttribute="bottom" id="Xn3-ub-CfC"/>
+                    <constraint firstItem="Yff-7z-g5F" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Nep-NN-I4B"/>
                     <constraint firstAttribute="bottom" secondItem="xOE-Vw-Z2Z" secondAttribute="bottom" priority="999" id="ZgI-R3-hhJ"/>
                     <constraint firstAttribute="trailing" secondItem="xOE-Vw-Z2Z" secondAttribute="trailing" id="aMk-M2-9Oa"/>
+                    <constraint firstAttribute="trailing" secondItem="i1O-Vi-V2x" secondAttribute="trailing" id="d0x-Eb-2OW"/>
                     <constraint firstItem="xOE-Vw-Z2Z" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="lev-Cs-3Gw"/>
-                    <constraint firstItem="cXj-T2-AEa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="wx6-1m-BIc"/>
+                    <constraint firstItem="Yff-7z-g5F" firstAttribute="top" secondItem="i1O-Vi-V2x" secondAttribute="bottom" id="oHL-Db-GJs"/>
+                    <constraint firstAttribute="trailing" secondItem="Yff-7z-g5F" secondAttribute="trailing" id="rV2-gI-cIR"/>
+                    <constraint firstItem="i1O-Vi-V2x" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="v8d-kb-g0W"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="continueConversationButton" destination="ARc-If-1Vn" id="caP-Gh-q8O"/>
-                <outlet property="heigthStackView" destination="Yxu-pQ-z6X" id="S8B-Uf-XH0"/>
-                <outlet property="label" destination="rUq-YX-JYj" id="ZdJ-yQ-zPO"/>
-                <outlet property="leadingAnchorLabel" destination="wx6-1m-BIc" id="yOR-ba-Kh5"/>
-                <outlet property="leadingAnchorMoreComments" destination="lev-Cs-3Gw" id="MUT-4s-urA"/>
+                <outlet property="continueConversationButton" destination="Yff-7z-g5F" id="00U-71-x7r"/>
+                <outlet property="label" destination="TmS-hP-W6t" id="DJ0-VW-Mew"/>
+                <outlet property="leadingContinueConversation" destination="Nep-NN-I4B" id="x1D-8c-jOZ"/>
                 <outlet property="leadingMoreComments" destination="lev-Cs-3Gw" id="lFd-35-C8a"/>
+                <outlet property="leadingStackView" destination="v8d-kb-g0W" id="g8a-vz-QSp"/>
                 <outlet property="moreCommentsButton" destination="xOE-Vw-Z2Z" id="PLH-7u-5MY"/>
-                <outlet property="stackView" destination="cXj-T2-AEa" id="Yv5-9l-LnD"/>
+                <outlet property="stackView" destination="i1O-Vi-V2x" id="dpH-eM-g8b"/>
             </connections>
             <point key="canvasLocation" x="176.81159420289856" y="119.53125"/>
         </tableViewCell>
