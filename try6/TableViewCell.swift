@@ -28,10 +28,7 @@ class TableViewCell: UITableViewCell {
     
     @IBOutlet weak var moreCommentsButton: UIButton!
     @IBOutlet weak var leadingAnchorMoreComments: NSLayoutConstraint!
-
     @IBOutlet weak var continueConversationButton: UIButton!
-    @IBOutlet weak var continueConversationHeight: NSLayoutConstraint!
-    @IBOutlet weak var moreCommentsHeight: NSLayoutConstraint!
     
     @IBOutlet weak var leadingMoreComments: NSLayoutConstraint!
     var delegate: AddOrDeleteDelegate?
@@ -65,32 +62,23 @@ class TableViewCell: UITableViewCell {
         leadingAnchorLabel.constant = CGFloat(comment.depth * 32)
         leadingMoreComments.constant = CGFloat(comment.depth * 32)
 
-        self.label.text = comment.comment
-        if comment.isMaxLength == 0{
-            moreCommentsButton.isHidden = true
-            moreCommentsHeight.constant = 0
-            
-            if comment.isMaxDepth {
-                continueConversationButton.isHidden = false
-                continueConversationHeight.constant = 30
+        if comment.isMaxLength == 0 {
+            moreCommentsButton.visibility = .gone
+            if comment.isMaxDepth == true {
+                continueConversationButton.visibility = .visible
             } else {
-                continueConversationButton.isHidden = true
-                continueConversationHeight.constant = 0
+                continueConversationButton.visibility = .gone
             }
-            
-            stackView.isHidden = false
-            heigthStackView = stackView.heightAnchor.constraint(greaterThanOrEqualToConstant: 0)
-            heigthStackView.isActive = true
+            stackView.visibility = .visible
+    
+            self.stackView.layoutIfNeeded()
+            self.label.text = comment.comment
         } else {
-            moreCommentsButton.isHidden = false
+            moreCommentsButton.visibility = .visible
             moreCommentsButton.setTitle("\(comment.isMaxLength) more comments...", for: .normal)
-            moreCommentsHeight.constant = 30
-            
-            stackView.isHidden = true
-            heigthStackView = stackView.heightAnchor.constraint(equalToConstant: 0)
-            heigthStackView.isActive = true
+            stackView.visibility = .gone
+            self.stackView.layoutIfNeeded()
         }
-        // self.layoutIfNeeded()
     }
     
     func getCellHeight() -> CGFloat{
