@@ -13,6 +13,8 @@ protocol AddOrDeleteDelegate {
     func collapse(comment: Comment, cell: UITableViewCell)
     func add(comment: Comment, cell: UITableViewCell)
     func delete(comment: Comment, cell: UITableViewCell)
+    func moreComments(comment: Comment, cell: UITableViewCell)
+    func continueConversation(comment: Comment, cell: UITableViewCell)
 }
 
 class TableViewCell: UITableViewCell {
@@ -21,8 +23,17 @@ class TableViewCell: UITableViewCell {
     var comment: Comment?
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var leadingAnchorLabel: NSLayoutConstraint!
-
+    @IBOutlet weak var stackView: UIView!
+    @IBOutlet weak var heigthStackView: NSLayoutConstraint!
     
+    @IBOutlet weak var moreCommentsButton: UIButton!
+    @IBOutlet weak var leadingAnchorMoreComments: NSLayoutConstraint!
+
+    @IBOutlet weak var continueConversationButton: UIButton!
+    @IBOutlet weak var continueConversationHeight: NSLayoutConstraint!
+    @IBOutlet weak var moreCommentsHeight: NSLayoutConstraint!
+    
+    @IBOutlet weak var leadingMoreComments: NSLayoutConstraint!
     var delegate: AddOrDeleteDelegate?
     
     override func awakeFromNib() {
@@ -41,11 +52,45 @@ class TableViewCell: UITableViewCell {
     @IBAction func collapsePress(_ sender: Any) {
                 self.delegate?.collapse(comment: self.comment!, cell: self)
     }
+    @IBAction func moreCommentsPress(_ sender: Any) {
+        self.delegate?.moreComments(comment: self.comment!, cell: self)
+
+    }
+    @IBAction func continueConversationPress(_ sender: Any) {
+        self.delegate?.continueConversation(comment: self.comment!, cell: self)
+    }
     
     func setCell(comment: Comment){
         self.comment = comment
-        self.label.text = comment.comment
         leadingAnchorLabel.constant = CGFloat(comment.depth * 32)
+        leadingMoreComments.constant = CGFloat(comment.depth * 32)
+
+        self.label.text = comment.comment
+        if comment.isMaxLength == 0{
+            moreCommentsButton.isHidden = true
+            moreCommentsHeight.constant = 0
+            
+            if comment.isMaxDepth {
+                continueConversationButton.isHidden = false
+                continueConversationHeight.constant = 30
+            } else {
+                continueConversationButton.isHidden = true
+                continueConversationHeight.constant = 0
+            }
+            
+            stackView.isHidden = false
+            heigthStackView = stackView.heightAnchor.constraint(greaterThanOrEqualToConstant: 0)
+            heigthStackView.isActive = true
+        } else {
+            moreCommentsButton.isHidden = false
+            moreCommentsButton.setTitle("\(comment.isMaxLength) more comments...", for: .normal)
+            moreCommentsHeight.constant = 30
+            
+            stackView.isHidden = true
+            heigthStackView = stackView.heightAnchor.constraint(equalToConstant: 0)
+            heigthStackView.isActive = true
+        }
+        // self.layoutIfNeeded()
     }
     
     func getCellHeight() -> CGFloat{

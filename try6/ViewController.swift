@@ -8,13 +8,20 @@
 
 import UIKit
 
+let MAX_DEPTH = 8
+let MAX_LENGTH = 3
+let ACTUAL_DEPTH = 3
+let ACTUAL_LENGTH = 3
+
 class Comment {
     let id: Int!
     var comment: String!
     var comments: [Comment] = []
-    var idToComments: [Int: Comment] = [:]
     var depth: Int!
     var parent: Comment?
+    
+    var isMaxDepth = false
+    var isMaxLength = 0
     
     static var count = 0
     
@@ -28,18 +35,43 @@ class Comment {
         self.comment = comment
         self.depth = depth
         self.parent = parent
+        // self.isMaxDepth = self.depth == MAX_DEPTH - 1
+
+        guard let parent = self.parent else { return }
+        parent.comments.append(self)
+        if parent.comments.count == MAX_LENGTH {
+            let maxLengthComment = Comment("", self.depth, parent)
+            maxLengthComment.isMaxLength = Int(arc4random_uniform(3))
+        }
     }
 }
 
 class ViewController: UIViewController {
-
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tableHeightConstraint: NSLayoutConstraint!
     var _currentlyDisplayed: [Comment] = []
     var makeExpandedCellsVisible: Bool = true
     var currentCell: UITableViewCell?
+    var comments: [Comment]!
 
-
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.isScrollEnabled = false
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 60
+        createRandomComments()
+        linearizeComments(comments)
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToWriteComment"{
+            let destVC = segue.destination as! WriteCommentViewController
+            destVC.comment = sender as? Comment
+            destVC.delegate = self
+        }
+    }
     func randomString() -> String {
         let letters : NSString = "abcdefghijklmnopqrstuvwxyz        "
         let mayus: NSString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -51,7 +83,7 @@ class ViewController: UIViewController {
         var nextChar = mayus.character(at: Int(rand))
         randomString += NSString(characters: &nextChar, length: 1) as String
         
-        for _ in 0 ..<  Int(arc4random_uniform(200)) {
+        for _ in 0 ..< Int(arc4random_uniform(200)) {
             let rand = arc4random_uniform(len)
             var nextChar = letters.character(at: Int(rand))
             randomString += NSString(characters: &nextChar, length: 1) as String
@@ -60,51 +92,30 @@ class ViewController: UIViewController {
         return randomString
     }
     
-    var comments: [Comment] = {
-        func randomString() -> String {
-           let letters : NSString = "abcdefghijklmnopqrstuvwxyz        "
-           let mayus: NSString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-            let len = UInt32(letters.length)
-            let len2 = UInt32(mayus.length)
-
-           var randomString = ""
-           let rand = arc4random_uniform(len2)
-           var nextChar = mayus.character(at: Int(rand))
-           randomString += NSString(characters: &nextChar, length: 1) as String
-
-           for _ in 0 ..<  Int(arc4random_uniform(200)) {
-               let rand = arc4random_uniform(len)
-               var nextChar = letters.character(at: Int(rand))
-               randomString += NSString(characters: &nextChar, length: 1) as String
-           }
-
-           return randomString
-       }
-        
-        let deep = 5
-        let long = 1
+    func createRandomComments(){
+        let deep = ACTUAL_DEPTH
+        let long = ACTUAL_LENGTH
         var comments: [Comment] = []
         
-        for n in 0...long{
+        for n in 0..<long{
             comments.append(Comment("0\(n) " + randomString(), 0, nil))
         }
+        
         var d = 1
         var cc = comments
         while d < deep{
             var new_comments: [Comment] = []
             for comment in cc {
-                for n in 0...long{
+                for n in 0..<long{
                     let c = Comment("\(d)\(n) " + randomString(), d, comment)
-                    comment.comments.append(c)
                     new_comments.append(c)
                 }
             }
             cc = new_comments
             d += 1
         }
-        return comments
-    }()
-    
+        self.comments = comments
+    }
     func linearizeComments(_ comments: [Comment]){
         var q: [Comment] = []
         for c in comments.reversed(){
@@ -134,24 +145,6 @@ class ViewController: UIViewController {
         }
         return linearizedComments
     }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.isScrollEnabled = false
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 60
-        linearizeComments(comments)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "goToWriteComment"{
-            let destVC = segue.destination as! WriteCommentViewController
-            destVC.comment = sender as? Comment
-            destVC.delegate = self
-        }
-    }
 }
 extension ViewController: AddCommentDelegate{
     func commentAdded(newComment: Comment) {
@@ -171,11 +164,22 @@ extension ViewController: AddCommentDelegate{
                 indexPaths.append(IndexPath(row: selectedIndex+i+1, section: indexPath.section))
             }
             tableView.insertRows(at: indexPaths, with: .bottom)
+        } else {
+            self._currentlyDisplayed.insert(newComment, at: selectedIndex+1)
+            tableView.insertRows(at: [IndexPath(row: selectedIndex+1, section: indexPath.section)], with: .bottom)
         }
     }
 }
 
-extension ViewController: AddOrDeleteDelegate{
+extension ViewController: AddOrDeleteDelegate {
+    func moreComments(comment: Comment, cell: UITableViewCell) {
+        
+    }
+    
+    func continueConversation(comment: Comment, cell: UITableViewCell) {
+        
+    }
+    
     func add(comment: Comment, cell: UITableViewCell) {
         self.currentCell = cell
         performSegue(withIdentifier: "goToWriteComment", sender: comment)
@@ -200,7 +204,7 @@ extension ViewController: AddOrDeleteDelegate{
             }
             tableView.insertRows(at: indexPaths, with: .bottom)
 
-            if self.makeExpandedCellsVisible {
+            if self.makeExpandedCellsVisible && comment.comments.count > 0 {
                 tableView.scrollToRow(at: IndexPath(row: selectedIndex+1, section: indexPath.section), at: UITableView.ScrollPosition.middle, animated: false)
             }
         }

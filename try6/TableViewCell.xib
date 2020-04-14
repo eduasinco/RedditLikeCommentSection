@@ -16,75 +16,130 @@
                 <rect key="frame" x="0.0" y="0.0" width="364" height="267"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="uPy-oz-pjB">
-                        <rect key="frame" x="0.0" y="0.0" width="364" height="70.5"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xOE-Vw-Z2Z">
+                        <rect key="frame" x="0.0" y="100.5" width="364" height="30"/>
+                        <color key="backgroundColor" red="0.93577490480000003" green="0.93577490480000003" blue="0.93577490480000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="gbg-H1-s5r"/>
+                        </constraints>
+                        <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <state key="normal" title="X more comments"/>
+                        <connections>
+                            <action selector="continueConversationPress:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="8ug-ii-g2v"/>
+                        </connections>
+                    </button>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cXj-T2-AEa">
+                        <rect key="frame" x="0.0" y="0.0" width="364" height="100.5"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rUq-YX-JYj">
-                                <rect key="frame" x="0.0" y="0.0" width="364" height="20.5"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="03z-Gc-vUG">
-                                <rect key="frame" x="0.0" y="20.5" width="364" height="50"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="uPy-oz-pjB">
+                                <rect key="frame" x="0.0" y="0.0" width="364" height="100.5"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qME-v5-V2B">
-                                        <rect key="frame" x="0.0" y="0.0" width="91" height="50"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rUq-YX-JYj">
+                                        <rect key="frame" x="0.0" y="0.0" width="364" height="20.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title="Add"/>
-                                        <connections>
-                                            <action selector="addPress:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="rG6-rc-Xa9"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qd7-vq-gZh">
-                                        <rect key="frame" x="91" y="0.0" width="91" height="50"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="03z-Gc-vUG">
+                                        <rect key="frame" x="0.0" y="20.5" width="364" height="50"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qME-v5-V2B">
+                                                <rect key="frame" x="0.0" y="0.0" width="91" height="50"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Add"/>
+                                                <connections>
+                                                    <action selector="addPress:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="rG6-rc-Xa9"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qd7-vq-gZh">
+                                                <rect key="frame" x="91" y="0.0" width="91" height="50"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Collapse"/>
+                                                <connections>
+                                                    <action selector="collapsePress:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="8pp-9r-TO8"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yiu-rL-9Uq">
+                                                <rect key="frame" x="182" y="0.0" width="91" height="50"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Delete"/>
+                                                <connections>
+                                                    <action selector="deletePress:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="JZA-hP-YRM"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NBs-6r-XnI">
+                                                <rect key="frame" x="273" y="0.0" width="91" height="50"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Expand"/>
+                                                <connections>
+                                                    <action selector="expandPress:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="CvM-Rn-RAe"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title="Collapse"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="08u-hf-aqZ"/>
+                                        </constraints>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ARc-If-1Vn">
+                                        <rect key="frame" x="0.0" y="70.5" width="364" height="30"/>
+                                        <color key="backgroundColor" red="0.93577490480000003" green="0.93577490480000003" blue="0.93577490480000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="ejk-zS-qrI"/>
+                                        </constraints>
+                                        <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Continue conversation"/>
                                         <connections>
-                                            <action selector="collapsePress:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="8pp-9r-TO8"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yiu-rL-9Uq">
-                                        <rect key="frame" x="182" y="0.0" width="91" height="50"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title="Delete"/>
-                                        <connections>
-                                            <action selector="deletePress:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="JZA-hP-YRM"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NBs-6r-XnI">
-                                        <rect key="frame" x="273" y="0.0" width="91" height="50"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title="Expand"/>
-                                        <connections>
-                                            <action selector="expandPress:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="CvM-Rn-RAe"/>
+                                            <action selector="moreCommentsPress:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="vcd-k4-RjM"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="08u-hf-aqZ"/>
+                                    <constraint firstItem="ARc-If-1Vn" firstAttribute="leading" secondItem="uPy-oz-pjB" secondAttribute="leading" id="0hO-tz-uM9"/>
+                                    <constraint firstItem="ARc-If-1Vn" firstAttribute="top" secondItem="03z-Gc-vUG" secondAttribute="bottom" id="ZZu-ic-iEX"/>
+                                    <constraint firstAttribute="trailing" secondItem="ARc-If-1Vn" secondAttribute="trailing" id="fHw-Yv-moA"/>
                                 </constraints>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </stackView>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="uPy-oz-pjB" firstAttribute="leading" secondItem="cXj-T2-AEa" secondAttribute="leading" id="LMu-gV-0w1"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" id="Yxu-pQ-z6X"/>
+                            <constraint firstAttribute="trailing" secondItem="uPy-oz-pjB" secondAttribute="trailing" id="ntk-LI-53T"/>
+                            <constraint firstItem="uPy-oz-pjB" firstAttribute="top" secondItem="cXj-T2-AEa" secondAttribute="top" id="uZv-kR-nul"/>
+                            <constraint firstAttribute="bottom" secondItem="uPy-oz-pjB" secondAttribute="bottom" id="zbL-Pu-otH"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="uPy-oz-pjB" secondAttribute="bottom" priority="999" id="IfY-kD-62m"/>
-                    <constraint firstItem="uPy-oz-pjB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="NdS-cH-TDf"/>
-                    <constraint firstItem="uPy-oz-pjB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="q5r-WI-wP5"/>
-                    <constraint firstAttribute="trailing" secondItem="uPy-oz-pjB" secondAttribute="trailing" id="yT8-wz-9oT"/>
+                    <constraint firstItem="xOE-Vw-Z2Z" firstAttribute="top" secondItem="cXj-T2-AEa" secondAttribute="bottom" id="C1M-8r-N4k"/>
+                    <constraint firstAttribute="trailing" secondItem="cXj-T2-AEa" secondAttribute="trailing" id="HoR-VM-hbQ"/>
+                    <constraint firstAttribute="trailing" secondItem="xOE-Vw-Z2Z" secondAttribute="trailing" id="ISD-j8-ymS"/>
+                    <constraint firstItem="cXj-T2-AEa" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="PAJ-Mp-JtS"/>
+                    <constraint firstItem="xOE-Vw-Z2Z" firstAttribute="top" secondItem="cXj-T2-AEa" secondAttribute="bottom" id="Xn3-ub-CfC"/>
+                    <constraint firstAttribute="bottom" secondItem="xOE-Vw-Z2Z" secondAttribute="bottom" priority="999" id="ZgI-R3-hhJ"/>
+                    <constraint firstAttribute="trailing" secondItem="xOE-Vw-Z2Z" secondAttribute="trailing" id="aMk-M2-9Oa"/>
+                    <constraint firstItem="xOE-Vw-Z2Z" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="lev-Cs-3Gw"/>
+                    <constraint firstItem="cXj-T2-AEa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="wx6-1m-BIc"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="continueConversationButton" destination="ARc-If-1Vn" id="caP-Gh-q8O"/>
+                <outlet property="continueConversationHeight" destination="ejk-zS-qrI" id="Byp-mg-mmE"/>
+                <outlet property="heigthStackView" destination="Yxu-pQ-z6X" id="S8B-Uf-XH0"/>
                 <outlet property="label" destination="rUq-YX-JYj" id="ZdJ-yQ-zPO"/>
-                <outlet property="leadingAnchorLabel" destination="NdS-cH-TDf" id="1PJ-Oc-76H"/>
+                <outlet property="leadingAnchorLabel" destination="wx6-1m-BIc" id="yOR-ba-Kh5"/>
+                <outlet property="leadingAnchorMoreComments" destination="lev-Cs-3Gw" id="MUT-4s-urA"/>
+                <outlet property="leadingMoreComments" destination="lev-Cs-3Gw" id="lFd-35-C8a"/>
+                <outlet property="moreCommentsButton" destination="xOE-Vw-Z2Z" id="PLH-7u-5MY"/>
+                <outlet property="moreCommentsHeight" destination="gbg-H1-s5r" id="JuO-b4-44y"/>
+                <outlet property="stackView" destination="cXj-T2-AEa" id="Yv5-9l-LnD"/>
             </connections>
-            <point key="canvasLocation" x="178" y="120"/>
+            <point key="canvasLocation" x="176.81159420289856" y="119.53125"/>
         </tableViewCell>
     </objects>
 </document>
