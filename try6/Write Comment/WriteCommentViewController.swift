@@ -33,7 +33,6 @@ class WriteCommentViewController: KUIViewController, UITextFieldDelegate {
     
     @IBAction func submitPress(_ sender: Any) {
         let newComment = Comment(textView.text!, comment)
-        comment.comments.insert(newComment, at: 0)
         delegate?.commentAdded(newComment: newComment)
         self.dismiss(animated: true)
     }

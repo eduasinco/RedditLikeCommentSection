@@ -46,7 +46,7 @@ class Comment {
             self.depth = 0
         }
         
-        self.isMaxDepth = self.depth == MAX_DEPTH - 1
+        self.isMaxDepth = self.depth == MAX_DEPTH
     }
 }
 
@@ -99,21 +99,23 @@ class ViewController: UIViewController {
     func createRandomComments(deep: Int = ACTUAL_DEPTH, long: Int = ACTUAL_LENGTH, parent: Comment? = nil) -> [Comment]{
         var comments: [Comment] = []
         for n in 0..<long{
-            comments.append(Comment("0\(n) " + randomString(), parent))
+            if let parent = parent {
+                comments.append(Comment("\(parent.depth + 1)-\(n) " + randomString(), parent))
+            } else {
+                comments.append(Comment("0-\(n) " + randomString(), parent))
+            }
         }
         
-        var d = 1
         var cc = comments
-        while d < deep && d % MAX_DEPTH != 0{
+        while cc[0].depth < deep {
             var new_comments: [Comment] = []
             for comment in cc {
                 for n in 0..<long{
-                    let c = Comment("\(d)\(n) " + randomString(), comment)
+                    let c = Comment("\(comment.depth + 1)-\(n) " + randomString(), comment)
                     new_comments.append(c)
                 }
             }
             cc = new_comments
-            d += 1
         }
         return comments
     }
@@ -202,7 +204,7 @@ extension ViewController: AddOrDeleteDelegate {
         let selectedIndex = indexPath.row
 
         var commentsToAdd: [Comment] = []
-        commentsToAdd = self.createRandomComments(deep: 3, long: 1, parent: comment)
+        commentsToAdd = self.createRandomComments(deep: 1, long: 1, parent: comment)
         commentsToAdd = self.subCommentsLinearized(commentsToAdd)
         self._currentlyDisplayed.insert(contentsOf: commentsToAdd, at: selectedIndex+1)
 
