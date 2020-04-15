@@ -76,7 +76,7 @@ class ViewController: UIViewController {
     var _currentlyDisplayed: [Comment] = []
     var makeExpandedCellsVisible: Bool = true
     var currentCell: UITableViewCell?
-    var comments: [Comment]!
+    var comments: [Comment] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,15 +85,10 @@ class ViewController: UIViewController {
         tableView.isScrollEnabled = false
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 60
-        self.comments = createRandomComments()
-        linearizeComments(comments)
-    }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "goToWriteComment"{
-            let destVC = segue.destination as! WriteCommentViewController
-            destVC.comment = sender as? Comment
-            destVC.delegate = self
+        if comments.count == 0 {
+            self.comments = createRandomComments()
         }
+        linearizeComments(comments)
     }
     func randomString() -> String {
         let letters : NSString = "abcdefghijklmnopqrstuvwxyz        "
@@ -190,6 +185,17 @@ extension ViewController: AddCommentDelegate{
             tableView.insertRows(at: [IndexPath(row: selectedIndex+1, section: indexPath.section)], with: .bottom)
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToWriteComment"{
+            let destVC = segue.destination as! WriteCommentViewController
+            destVC.comment = sender as? Comment
+            destVC.delegate = self
+        } else if segue.identifier == "SelfSegue"{
+            let destVC = segue.destination as! ViewController
+            destVC.comments = [sender as! Comment]
+        }
+    }
 }
 
 extension ViewController: AddOrDeleteDelegate {
@@ -221,20 +227,8 @@ extension ViewController: AddOrDeleteDelegate {
         let selectedCom: Comment = _currentlyDisplayed[indexPath.row]
         let selectedIndex = indexPath.row
         
-        self._currentlyDisplayed.remove(at: selectedIndex)
-        tableView.deleteRows(at: [IndexPath(row: selectedIndex, section: indexPath.section)], with: .bottom)
-        delteComemnt(comment: selectedCom)
-
-        var commentsToAdd: [Comment] = []
-        commentsToAdd = self.createRandomComments(deep: 1, long: 1, parent: comment.parent)
-        commentsToAdd = self.subCommentsLinearized(commentsToAdd)
-        self._currentlyDisplayed.insert(contentsOf: commentsToAdd, at: selectedIndex)
-
-        var indexPaths: [IndexPath] = []
-        for i in 0..<commentsToAdd.count {
-            indexPaths.append(IndexPath(row: selectedIndex+i, section: indexPath.section))
-        }
-        tableView.insertRows(at: indexPaths, with: .bottom)
+        let commentToSend = Comment(comment.parent!.comment, nil)
+        performSegue(withIdentifier: "SelfSegue", sender: commentToSend)
     }
     
     func add(comment: Comment, cell: UITableViewCell) {

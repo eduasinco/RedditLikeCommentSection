@@ -10,7 +10,7 @@
         <!--View Controller-->
         <scene sceneID="yDt-6f-dEN">
             <objects>
-                <viewController id="9oz-sF-5cz" customClass="ViewController" customModule="try6" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CommentView" id="9oz-sF-5cz" customClass="ViewController" customModule="try6" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7yU-XC-xHG">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -66,6 +66,7 @@
                         <outlet property="tableHeightConstraint" destination="kby-n7-clR" id="aSe-7a-d7G"/>
                         <outlet property="tableView" destination="xMr-FM-1lj" id="4LB-IJ-k3Z"/>
                         <segue destination="AwB-Kk-yQ9" kind="show" identifier="goToWriteComment" id="mVB-im-bEv"/>
+                        <segue destination="aef-sr-J14" kind="show" identifier="SelfSegue" id="Gwr-yL-yyQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mu3-Kl-5dK" sceneMemberID="firstResponder"/>
@@ -81,6 +82,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EPl-w3-53U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1049" y="130"/>
+        </scene>
+        <!--CommentView-->
+        <scene sceneID="5dN-2i-jOc">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="CommentView" id="aef-sr-J14" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="TOQ-9X-qXZ"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lwb-jt-ctZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1048" y="-3"/>
         </scene>
     </scenes>
 </document>
